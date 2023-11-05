@@ -9,7 +9,7 @@ class Game
     @board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     @players = { :X => "", :O => ""}
     @pick = []
-    @rounds = 0
+    @player_turn = 0
   end
 
   def play
@@ -44,7 +44,7 @@ class Game
     move = gets.chomp.to_i
     if valid_move?(move)
       @board[move] = player.to_s
-      @rounds += 1
+      @player_turn += 1
       @pick << move
       display_board
     else
@@ -61,11 +61,11 @@ class Game
   end
 
   def play_game
-    player = @rounds.even? ? :X : :O
+    player = @player_turn.even? ? :X : :O
     player_turn(player)
     if check_winner
       puts "Congratulations #{@players[player]}! It is your victory!"
-    elsif @rounds == 9
+    elsif @player_turn == 9
       puts "It is a tie!"
     else
       play_game
@@ -73,7 +73,7 @@ class Game
   end
 
   def game_over
-    check_winner || @rounds == 9
+    check_winner || @player_turn == 9
   end
 
 end
