@@ -1,15 +1,20 @@
-class Game
+module TicTacToe
   WIN_COMBINATION = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], # horizontal win combination
     [0, 3, 6], [1, 4, 7], [2, 5, 8], # vertical
     [0, 4, 8], [2, 4, 6]
   ]
+end
 
+class Game
+
+  include TicTacToe
+ 
   def initialization
     @board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     @players = { :X => "", :O => ""}
     @pick = []
-    @player_turn = 0
+    @turns = 0
   end
 
   def play
@@ -44,7 +49,7 @@ class Game
     move = gets.chomp.to_i
     if valid_move?(move)
       @board[move] = player.to_s
-      @player_turn += 1
+      @turns += 1
       @pick << move
       display_board
     else
@@ -61,7 +66,7 @@ class Game
   end
 
   def play_game
-    player = @player_turn.even? ? :X : :O
+    player = @turns.even? ? :X : :O
     player_turn(player)
     if check_winner
       puts "Congratulations #{@players[player]}! It is your victory!"
@@ -73,7 +78,7 @@ class Game
   end
 
   def game_over
-    check_winner || @player_turn == 9
+    check_winner || @turns == 9
   end
 
 end
