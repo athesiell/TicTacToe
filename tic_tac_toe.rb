@@ -19,7 +19,6 @@ class Game
     play_game until game_over
   end
 
-  private
 
   def get_player_name
     puts "Player X, please enter your name:"
@@ -79,6 +78,6 @@ class Game
 
 end
 
-puts "Welcome to the Tic Tac Toe game! Let's play!"
-game = Game.new
-game.play
+# puts "Welcome to the Tic Tac Toe game! Let's play!"
+# game = Game.new
+# game.play
