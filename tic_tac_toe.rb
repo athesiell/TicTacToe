@@ -1,12 +1,14 @@
 class Game
 
+  attr_reader :turns
+
   WIN_COMBINATION = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], # horizontal win combination
     [0, 3, 6], [1, 4, 7], [2, 5, 8], # vertical
     [0, 4, 8], [2, 4, 6]
   ]
  
-  def initialization
+  def initialize
     @board = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     @players = { :X => "", :O => ""}
     @pick = []
@@ -65,7 +67,7 @@ class Game
     player_turn(player)
     if check_winner
       puts "Congratulations #{@players[player]}! It is your victory!"
-    elsif @player_turn == 9
+    elsif @turns == 9
       puts "It is a tie!"
     else
       play_game
